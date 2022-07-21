@@ -66,6 +66,17 @@ public class examples {
         System.out.println(driver.findElement(By.xpath("//div[@id='content']")).getText());
 
         driver.navigate().back();
+
+        driver.findElement(By.linkText("Drag and Drop")).click();
+        // before drag and drop
+        //System.out.println(driver.findElement(By.id("column-a")).getText());
+        Actions a=new Actions(driver);
+        a.dragAndDrop(driver.findElement(By.id("column-a")), driver.findElement(By.id("column-b")));
+        //after drag and drop
+       // System.out.println(driver.findElement(By.id("column-a")).getText());
+
+        driver.navigate().back();
+
     }
 }
 

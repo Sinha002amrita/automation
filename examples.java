@@ -2,6 +2,7 @@
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -69,13 +70,39 @@ public class examples {
 
         driver.findElement(By.linkText("Drag and Drop")).click();
         // before drag and drop
-        //System.out.println(driver.findElement(By.id("column-a")).getText());
+       /* System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/header")).getText());
+
+        WebElement source= driver.findElement(By.id("column-a"));
+        WebElement target= driver.findElement(By.id("column-b"));
         Actions a=new Actions(driver);
-        a.dragAndDrop(driver.findElement(By.id("column-a")), driver.findElement(By.id("column-b")));
+        Action dragAndDrop = a.clickAndHold(source).moveToElement(target).release(target).build();
+        dragAndDrop.perform();
+        //a.dragAndDrop(driver.findElement(By.id("column-a")),driver.findElement(By.id("column-b"))).build().perform();
+
         //after drag and drop
+        System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/header")).getText());
        // System.out.println(driver.findElement(By.id("column-a")).getText());
+*/
+        driver.navigate().back();
+
+        driver.findElement(By.linkText("Dropdown")).click();
+        driver.findElement(By.cssSelector("select#dropdown")).click();
+        driver.findElement(By.xpath("//option[@value='2']")).click();
+        driver.findElement(By.xpath("//option[@value='1']")).click();
 
         driver.navigate().back();
+
+        driver.findElement(By.linkText("Dynamic Content")).click();
+        System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]")).getText());
+        driver.navigate().refresh();
+        System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]")).getText());
+        driver.findElement(By.linkText("click here")).click();
+        System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]")).getText());
+        driver.findElement(By.linkText("click here")).click();
+        System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]")).getText());
+
+
+
 
     }
 }

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class examples {
@@ -100,6 +102,16 @@ public class examples {
         System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]")).getText());
         driver.findElement(By.linkText("click here")).click();
         System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]")).getText());
+
+        driver.navigate().back();
+        driver.navigate().back();
+
+        driver.findElement(By.linkText("Dynamic Controls")).click();
+        driver.findElement(By.cssSelector("button[onclick='swapCheckbox()']")).click();
+        WebDriverWait wait=new WebDriverWait(driver,60);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[onclick='swapCheckbox()']")));
+
+        driver.findElement(By.cssSelector("button[onclick='swapCheckbox()']")).click();
 
 
 

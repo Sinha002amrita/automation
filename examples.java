@@ -1,17 +1,20 @@
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 
 public class examples {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\vk sinha\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
@@ -63,7 +66,7 @@ public class examples {
         driver.findElement(By.linkText("Disappearing Elements")).click();
 
         System.out.println(driver.findElement(By.xpath("//div[@id='content']")).getText());
-        //refesh page
+        //refresh page
         driver.navigate().refresh();
         System.out.println("After refreshing/reloading page");
         System.out.println(driver.findElement(By.xpath("//div[@id='content']")).getText());
@@ -72,27 +75,34 @@ public class examples {
 
         driver.findElement(By.linkText("Drag and Drop")).click();
         // before drag and drop
-       /* System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/header")).getText());
+       System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/header")).getText());
 
         WebElement source= driver.findElement(By.id("column-a"));
         WebElement target= driver.findElement(By.id("column-b"));
-        Actions a=new Actions(driver);
-        Action dragAndDrop = a.clickAndHold(source).moveToElement(target).release(target).build();
-        dragAndDrop.perform();
+
+        String xto=Integer.toString(source.getLocation().x);
+        String yto=Integer.toString(target.getLocation().y);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("function createEvent(typeOfEvent) {" +"var event =document.createEvent(\"CustomEvent\"); " +"event.initCustomEvent(typeOfEvent,true, true, null);\n" +"event.dataTransfer = {\n" +"data: {},\n" +"setData: function (key, value) {\n" +"this.data[key] = value;\n" +"},\n" +"getData: function (key) {\n" +"return this.data[key];\n" +"}\n" +"};\n" +"return event;\n" +"}\n" +"\n" +"function dispatchEvent(element, event,transferData) {\n" +"if (transferData !== undefined) {\n" +"event.dataTransfer = transferData;\n" +"}\n" +"if (element.dispatchEvent) {\n" + "element.dispatchEvent(event);\n" +"} else if (element.fireEvent) {\n" +"element.fireEvent(\"on\" + event.type, event);\n" +"}\n" +"}\n" +"\n" +"function simulateHTML5DragAndDrop(element, destination) {\n" +"var dragStartEvent =createEvent('dragstart');\n" +"dispatchEvent(element, dragStartEvent);\n" +"var dropEvent = createEvent('drop');\n" +"dispatchEvent(destination, dropEvent,dragStartEvent.dataTransfer);\n" +"var dragEndEvent = createEvent('dragend');\n" +"dispatchEvent(element, dragEndEvent,dropEvent.dataTransfer);\n" +"}\n" +"\n" +"var source = arguments[0];\n" +"var destination = arguments[1];\n" +"simulateHTML5DragAndDrop(source,destination);",source, target);
+        Thread.sleep(1500);
+
+        //Actions a=new Actions(driver);
+       // Action dragAndDrop = a.clickAndHold(source).moveToElement(target).release(target).build();
+       // dragAndDrop.perform();
         //a.dragAndDrop(driver.findElement(By.id("column-a")),driver.findElement(By.id("column-b"))).build().perform();
 
         //after drag and drop
         System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/header")).getText());
        // System.out.println(driver.findElement(By.id("column-a")).getText());
-*/
-        driver.navigate().back();
+
+         driver.navigate().back();
 
         driver.findElement(By.linkText("Dropdown")).click();
         driver.findElement(By.cssSelector("select#dropdown")).click();
         driver.findElement(By.xpath("//option[@value='2']")).click();
         driver.findElement(By.xpath("//option[@value='1']")).click();
 
-        driver.navigate().back();
+       driver.navigate().back();
 
         driver.findElement(By.linkText("Dynamic Content")).click();
         System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]")).getText());
@@ -106,13 +116,17 @@ public class examples {
         driver.navigate().back();
         driver.navigate().back();
 
+
         driver.findElement(By.linkText("Dynamic Controls")).click();
         driver.findElement(By.cssSelector("button[onclick='swapCheckbox()']")).click();
-        WebDriverWait wait=new WebDriverWait(driver,60);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[onclick='swapCheckbox()']")));
+        String btn=  driver.findElement(By.cssSelector("button[onclick='swapCheckbox()']")).getText();
+        System.out.println(btn);
 
-        driver.findElement(By.cssSelector("button[onclick='swapCheckbox()']")).click();
+        WebDriverWait wait=new WebDriverWait(driver,200);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//button[@onclick= ‘swapCheckbox()']"),"Add"));
 
+        driver.findElement(By.xpath("//button[@onclick= ‘swapCheckbox()']")).click();
+        System.out.println(btn);
 
 
 

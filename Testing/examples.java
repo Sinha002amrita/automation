@@ -1,19 +1,20 @@
+package Testing;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class examples  {
-    static WebDriver driver;
+public class examples extends ProjectSetup {
 
-    static void test() {
+    public static void main(String[] args) throws InterruptedException {
+        ProjectSetup p =new ProjectSetup();
+        driver=p.openBrowser();
 
-    //public static void main(String[] args) throws InterruptedException {
-
-       // System.setProperty("webdriver.chrome.driver", "C:\\Users\\vk sinha\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe");
-        //WebDriver driver = new ChromeDriver();
-
-        //driver.get("http://the-internet.herokuapp.com/");
-    System.out.println(driver.findElement(By.cssSelector(".heading")).getText());
+        System.out.println(driver.findElement(By.cssSelector(".heading")).getText());
         driver.findElement(By.linkText("A/B Testing")).click();
         System.out.println(driver.findElement(By.tagName("p")).getText());
 
@@ -41,7 +42,7 @@ public class examples  {
         //to deselect
         driver.findElement(By.xpath("//input[@type='checkbox'] [2]")).click();
 
-  /*      driver.navigate().back();
+        driver.navigate().back();
 
         driver.findElement(By.linkText("Context Menu")).click();
         Actions act = new Actions(driver);
@@ -68,7 +69,7 @@ public class examples  {
 
         driver.findElement(By.linkText("Drag and Drop")).click();
         // before drag and drop
-       System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/header")).getText());
+        System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/header")).getText());
 
         WebElement source= driver.findElement(By.id("column-a"));
         WebElement target= driver.findElement(By.id("column-b"));
@@ -88,14 +89,14 @@ public class examples  {
         System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/header")).getText());
        // System.out.println(driver.findElement(By.id("column-a")).getText());
 
-         driver.navigate().back();
+        driver.navigate().back();
 
         driver.findElement(By.linkText("Dropdown")).click();
         driver.findElement(By.cssSelector("select#dropdown")).click();
         driver.findElement(By.xpath("//option[@value='2']")).click();
         driver.findElement(By.xpath("//option[@value='1']")).click();
 
-       driver.navigate().back();
+        driver.navigate().back();
 
         driver.findElement(By.linkText("Dynamic Content")).click();
         System.out.println(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]")).getText());
@@ -121,6 +122,8 @@ public class examples  {
         System.out.println(driver.findElement(By.cssSelector("button[onclick='swapCheckbox()']")).getText());
         driver.findElement(By.cssSelector("button[onclick='swapCheckbox()']")).click();
 
+        driver.navigate().back();
+
         driver.findElement(By.linkText("Dynamic Controls")).click();
         driver.findElement(By.cssSelector("button[onclick='swapInput()']")).click();
 
@@ -130,8 +133,8 @@ public class examples  {
         String btn1=  driver.findElement(By.cssSelector("button[onclick='swapInput()']")).getText();
         System.out.println(btn1);
 
-        WebDriverWait wait=new WebDriverWait(driver,200);
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("button[onclick='swapInput()']"),"Disable"));
+        WebDriverWait wait1=new WebDriverWait(driver,200);
+        wait1.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("button[onclick='swapInput()']"),"Disable"));
 
         System.out.println(driver.findElement(By.cssSelector("button[onclick='swapInput()']")).getText());
         driver.findElement(By.cssSelector("button[onclick='swapInput()']")).click();
@@ -156,7 +159,7 @@ public class examples  {
 
         driver.findElement(By.linkText("Exit Intent")).click();
 
-*/
+
 
     }
 }

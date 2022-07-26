@@ -1,26 +1,19 @@
-
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 
-public class examples {
-    public static void main(String[] args) throws InterruptedException {
+public class examples  {
+    static WebDriver driver;
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\vk sinha\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+    static void test() {
 
-        driver.get("http://the-internet.herokuapp.com/");
-        System.out.println(driver.findElement(By.cssSelector(".heading")).getText());
+    //public static void main(String[] args) throws InterruptedException {
+
+       // System.setProperty("webdriver.chrome.driver", "C:\\Users\\vk sinha\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe");
+        //WebDriver driver = new ChromeDriver();
+
+        //driver.get("http://the-internet.herokuapp.com/");
+    System.out.println(driver.findElement(By.cssSelector(".heading")).getText());
         driver.findElement(By.linkText("A/B Testing")).click();
         System.out.println(driver.findElement(By.tagName("p")).getText());
 
@@ -48,7 +41,7 @@ public class examples {
         //to deselect
         driver.findElement(By.xpath("//input[@type='checkbox'] [2]")).click();
 
-        driver.navigate().back();
+  /*      driver.navigate().back();
 
         driver.findElement(By.linkText("Context Menu")).click();
         Actions act = new Actions(driver);
@@ -123,12 +116,47 @@ public class examples {
         System.out.println(btn);
 
         WebDriverWait wait=new WebDriverWait(driver,200);
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//button[@onclick= ‘swapCheckbox()']"),"Add"));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("button[onclick='swapCheckbox()']"),"Add"));
 
-        driver.findElement(By.xpath("//button[@onclick= ‘swapCheckbox()']")).click();
-        System.out.println(btn);
+        System.out.println(driver.findElement(By.cssSelector("button[onclick='swapCheckbox()']")).getText());
+        driver.findElement(By.cssSelector("button[onclick='swapCheckbox()']")).click();
 
+        driver.findElement(By.linkText("Dynamic Controls")).click();
+        driver.findElement(By.cssSelector("button[onclick='swapInput()']")).click();
 
+//      issue in sending text in text box
+        //  driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hello");
+
+        String btn1=  driver.findElement(By.cssSelector("button[onclick='swapInput()']")).getText();
+        System.out.println(btn1);
+
+        WebDriverWait wait=new WebDriverWait(driver,200);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("button[onclick='swapInput()']"),"Disable"));
+
+        System.out.println(driver.findElement(By.cssSelector("button[onclick='swapInput()']")).getText());
+        driver.findElement(By.cssSelector("button[onclick='swapInput()']")).click();
+
+        driver.navigate().back();
+
+        driver.findElement(By.linkText("Entry Ad")).click();
+        //driver.findElement(By.id("restart-ad")).click();
+
+        driver.getWindowHandle();
+
+        WebElement modal = driver.findElement(By.xpath("//p[contains(text(),'Close')]"));
+        WebElement modalClose = modal.findElement(By.xpath("//p[contains(text(),'Close')]"));
+
+        WebDriverWait t = new WebDriverWait(driver, 30);
+        t.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//p[contains(text(),'Close')]"))));
+        t.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//p[contains(text(),'Close')]"))));
+
+        modalClose.click();
+
+        driver.navigate().back();
+
+        driver.findElement(By.linkText("Exit Intent")).click();
+
+*/
 
     }
 }

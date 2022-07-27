@@ -158,6 +158,7 @@ public class examples extends ProjectSetup {
         driver.navigate().back();
 
         driver.findElement(By.linkText("Exit Intent")).click();
+        //not completed this section
 
 
 

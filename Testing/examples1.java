@@ -1,9 +1,8 @@
 package Testing;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.KeyInput;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class examples1 extends ProjectSetup {
 
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         ProjectSetup p = new ProjectSetup();
         driver = p.openBrowser();
 
@@ -29,7 +28,7 @@ public class examples1 extends ProjectSetup {
         chooseFile.sendKeys("C:\\Users\\vk sinha\\Downloads\\Ocean.jpeg");
         driver.findElement(By.id("file-submit")).click();
 
-      //Floating Menu
+        //Floating Menu
         driver.findElement(By.linkText("Floating Menu")).click();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -94,5 +93,20 @@ public class examples1 extends ProjectSetup {
         driver.switchTo().frame("frame-right");
         System.out.println(driver.findElement(By.xpath("//body[contains(text(),'RIGHT')]")).getText());
 
+        //Geolocation
+        driver.findElement(By.linkText("Geolocation")).click();
+        System.out.println(driver.findElement(By.xpath("//button[@onclick='getLocation()']")).getText());
+        driver.findElement(By.xpath("//button[@onclick='getLocation()']")).click();
+
+        //Horizontal Slider
+        driver.findElement(By.linkText("Horizontal Slider")).click();
+
+        //Hovers
+        driver.findElement(By.linkText("Hovers")).click();
+        Actions mouseAction= new Actions(driver);
+        mouseAction.moveToElement(driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[2]/img"))).build().perform();
+        driver.findElement(By.xpath("//body/div[2]/div[1]/div[1]/div[2]/div/a")).click();
+
     }
+
 }

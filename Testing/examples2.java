@@ -43,21 +43,30 @@ public class examples2 extends ProjectSetup{
                 driver.findElement(By.cssSelector("input[type='number']")).sendKeys(Keys.ARROW_UP);
                 //for decrement
                 driver.findElement(By.cssSelector("input[type='number']")).sendKeys(Keys.ARROW_DOWN);
-*/
+
         //JQuery UI Menus
         driver.findElement(By.linkText("JQuery UI Menus")).click();
         WebElement h1=driver.findElement(By.id("ui-id-2"));
         Actions hover=new Actions(driver);
-        hover.moveToElement(h1).build().perform();
+        hover.moveToElement(h1).click();
 
         WebElement h2= driver.findElement(By.id("ui-id-4"));
-        hover.moveToElement(h2).build().perform();
+        hover.moveToElement(h1).click();
+        hover.moveToElement(h2).perform();
 
         WebElement h3=driver.findElement(By.id("ui-id-6"));
-        hover.moveToElement(h3).click();
+        hover.moveToElement(h1).click();
+        hover.moveToElement(h2).click();
+        hover.moveToElement(h3).click().perform();
 
+        //hyperlink
+        driver.findElement(By.linkText("JQuery UI Menus")).click();
+        driver.findElement(By.linkText("JQuery UI Menus")).click();
+        driver.findElement(By.linkText("blur")).click();
+ */
         //JavaScript Alerts
         driver.findElement(By.linkText("JavaScript Alerts")).click();
+
         //JavaScript onload event error
         driver.findElement(By.linkText("JavaScript onload event error")).click();
         //Key Presses

@@ -16,9 +16,9 @@ public class examples2 extends ProjectSetup{
                 driver = p.openBrowser();
 
 
- /*       //Infinite Scroll
+        //Infinite Scroll
         driver.findElement(By.linkText("Infinite Scroll")).click();
-        //Thread.sleep(1000);
+/*        //Thread.sleep(1000);
 -----------------------Issue-----------------------------------------------------------------------
         JavascriptExecutor jse = (JavascriptExecutor)driver;
        jse.executeScript("window.scrollBy(0,250)", "");
@@ -36,7 +36,7 @@ public class examples2 extends ProjectSetup{
        driver.findElement(By.xpath("//*[@id='page-footer']/div/div/a")).click();
 
 -----------------------------------------------------------------------------------------------------------------------------
-        //Inputs
+*/        //Inputs
         driver.findElement(By.linkText("Inputs")).click();
         // for increment upto 10
                 for(int i = 0; i < 10; i++)
@@ -63,17 +63,43 @@ public class examples2 extends ProjectSetup{
         driver.findElement(By.linkText("JQuery UI Menus")).click();
         driver.findElement(By.linkText("JQuery UI Menus")).click();
         driver.findElement(By.linkText("blur")).click();
- */
+
         //JavaScript Alerts
         driver.findElement(By.linkText("JavaScript Alerts")).click();
 
+        driver.findElement(By.cssSelector("button[onclick='jsAlert()']")).click();
+                //To accept
+        driver.switchTo().alert().accept();
+
+        driver.findElement(By.cssSelector("button[onclick='jsConfirm()']")).click();
+                // to accept
+                driver.switchTo().alert().accept();
+                //To cancel
+                driver.switchTo().alert().dismiss();
+
+        driver.findElement(By.cssSelector("button[onclick='jsPrompt()']")).click();
+        //to enter text
+        driver.switchTo().alert().sendKeys("Hello JS");
+        //To accept
+                driver.switchTo().alert().accept();
+                //To cancel
+                driver.switchTo().alert().dismiss();
+
         //JavaScript onload event error
         driver.findElement(By.linkText("JavaScript onload event error")).click();
+        System.out.println(driver.findElement(By.cssSelector("body[onload='loadError()']")).getText());
+
+
         //Key Presses
         driver.findElement(By.linkText("Key Presses")).click();
+        driver.findElement(By.id("target")).sendKeys(Keys.TAB);
+        driver.findElement(By.id("target")).sendKeys(Keys.BACK_SPACE);
+        driver.findElement(By.id("target")).sendKeys(Keys.ENTER);
+        driver.findElement(By.id("target")).sendKeys(Keys.SUBTRACT);
+
         //Large & Deep DOM
         driver.findElement(By.linkText("Large & Deep DOM")).click();
-
+        System.out.println(driver.getCurrentUrl());
 
   }
 

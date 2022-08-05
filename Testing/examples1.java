@@ -2,13 +2,8 @@ package Testing;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.KeyInput;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.concurrent.TimeUnit;
 
 public class examples1 extends ProjectSetup {
 
@@ -82,13 +77,13 @@ public class examples1 extends ProjectSetup {
         System.out.println(driver.findElement(By.xpath("//body[contains(text(),'LEFT')]")).getText());
 
         driver.switchTo().defaultContent();
-
+        //middle frame
         driver.switchTo().frame("frame-top");
         driver.switchTo().frame("frame-middle");
         System.out.println(driver.findElement(By.xpath("//div[contains(text(),'MIDDLE')]")).getText());
 
         driver.switchTo().defaultContent();
-
+        //right frame
         driver.switchTo().frame("frame-top");
         driver.switchTo().frame("frame-right");
         System.out.println(driver.findElement(By.xpath("//body[contains(text(),'RIGHT')]")).getText());

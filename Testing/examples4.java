@@ -52,5 +52,6 @@ public class examples4 extends ProjectSetup {
         //WYSIWYG Editor
         driver.findElement(By.linkText("WYSIWYG Editor")).click();
 
+
     }
 }

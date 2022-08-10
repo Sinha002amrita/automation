@@ -8,9 +8,9 @@ public class ProjectSetup {
 
    public WebDriver openBrowser() {
 
-       System.setProperty("webdriver.chrome.driver", "C:\\Users\\vk sinha\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe");
+       System.setProperty("webdriver.chrome.driver", "C:\\Users\\vk sinha\\Downloads\\chromedriver_updated\\chromedriver.exe");
        WebDriver driver = new ChromeDriver();
-       driver.get("http://the-internet.herokuapp.com/");
+      // driver.get("http://the-internet.herokuapp.com/");
        return(driver);
 
    }

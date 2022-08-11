@@ -7,7 +7,7 @@ import java.util.List;
 
 public class testdemo extends ProjectSetup {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         ProjectSetup p = new ProjectSetup();
         driver = p.openBrowser();
 
@@ -26,6 +26,15 @@ public class testdemo extends ProjectSetup {
             linkCollection.get(i).sendKeys(clickOnLink);
 
         }
-    }
 
+        //Sum of all values present in table
+        driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+        List<WebElement> values = driver.findElements(By.cssSelector(".table-display td:nth-child(3)"));
+        int sum=0;
+        for (int i = 0; i < values.size(); i++)
+        {
+          sum= sum + Integer.parseInt(values.get(i).getText());
+        }
+           System.out.println(sum);
+    }
 }
